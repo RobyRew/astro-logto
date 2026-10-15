@@ -1,0 +1,40 @@
+{
+  "name": "@robyrew/astro-logto",
+  "version": "0.1.0",
+  "description": "Logto Traditional Web sign-in for RobyRew Astro server apps: server-side sessions, one implementation",
+  "license": "Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobyRew/astro-logto.git"
+  },
+  "files": [
+    "src/index.ts",
+    "src/sqlite-store.ts"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./sqlite": "./src/sqlite-store.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@logto/node": ">=3"
+  },
+  "devDependencies": {
+    "@logto/node": "^4.0.1",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^26.6.5",
+    "better-sqlite3": "^13.0.3",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  },
+  "keywords": [
+    "astro",
+    "logto",
+    "oidc",
+    "auth"
+  ]
+}
