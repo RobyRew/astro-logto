@@ -1,40 +1,76 @@
 {
   "name": "@robyrew/astro-logto",
-  "version": "0.1.0",
-  "description": "Logto Traditional Web sign-in for RobyRew Astro server apps: server-side sessions, one implementation",
+  "version": "0.2.0",
+  "description": "Logto for RobyRew server apps: Traditional Web sessions, webhooks, API bearer tokens and the shared @handle rule",
   "license": "Apache-2.0",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RobyRew/astro-logto.git"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "files": [
-    "src/index.ts",
-    "src/sqlite-store.ts"
+    "dist"
   ],
   "exports": {
-    ".": "./src/index.ts",
-    "./sqlite": "./src/sqlite-store.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./sqlite": {
+      "types": "./dist/sqlite-store.d.ts",
+      "default": "./dist/sqlite-store.js"
+    },
+    "./webhook": {
+      "types": "./dist/webhook.d.ts",
+      "default": "./dist/webhook.js"
+    },
+    "./bearer": {
+      "types": "./dist/bearer.d.ts",
+      "default": "./dist/bearer.js"
+    },
+    "./handle": {
+      "types": "./dist/handle.d.ts",
+      "default": "./dist/handle.js"
+    },
+    "./testing": {
+      "types": "./dist/testing.d.ts",
+      "default": "./dist/testing.js"
+    }
   },
+  "sideEffects": false,
   "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:dist": "npm run build && git diff --exit-code -- dist"
+  },
+  "dependencies": {
+    "jose": "^6.2.17"
   },
   "peerDependencies": {
-    "@logto/node": ">=3"
+    "@logto/node": ">=3.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@logto/node": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@logto/node": "^4.0.1",
+    "@logto/node": "^4.0.2",
     "@types/better-sqlite3": "^9.6.0",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "better-sqlite3": "^13.0.3",
-    "typescript": "^6.0.3",
-    "vitest": "^5.0.5"
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
   },
   "keywords": [
     "astro",
     "logto",
     "oidc",
-    "auth"
+    "auth",
+    "webhook"
   ]
 }
